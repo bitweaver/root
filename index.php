@@ -1,12 +1,12 @@
 <?php
-// $Header: /cvsroot/bitweaver/_root/index.php,v 1.1 2005/06/19 05:38:04 bitweaver Exp $
+// $Header: /cvsroot/bitweaver/_root/index.php,v 1.2 2005/06/20 07:34:16 lsces Exp $
 
 // Copyright (c) 2002-2003, Luis Argerich, Garland Foster, Eduardo Polidor, et. al.
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
 // this has to be checked first thing since safe_mode screws up everything
-// to run tikipro with safe_mode on, you should remove the following lines
+// to run bitweaver with safe_mode on, you should remove the following lines
 if( ini_get( 'safe_mode' ) ) {
 	echo '
 		<h1>Safe Mode check</h1>
