@@ -1,5 +1,9 @@
 <?php
-// $Header: /cvsroot/bitweaver/_root/index.php,v 1.2 2005/06/20 07:34:16 lsces Exp $
+/**
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.3 2005/06/28 07:45:39 spiderr Exp $
+
+* @package bitweaver
+*/
 
 // Copyright (c) 2002-2003, Luis Argerich, Garland Foster, Eduardo Polidor, et. al.
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
