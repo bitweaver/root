@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.3 2005/06/28 07:45:39 spiderr Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.4 2005/08/01 18:40:03 squareing Exp $
 
 * @package bitweaver
 */
@@ -24,7 +24,7 @@ require_once ('bit_setup_inc.php');
 
 //vd( $_COOKIE );
 //vd( $_SESSION );
-global $gBitSystem, $smarty;
+global $gBitSystem, $gBitSmarty;
 
 // $gBitSystem->loadLayout() needs ACTIVE_PACKAGE
 if (!defined('ACTIVE_PACKAGE')) {
@@ -57,10 +57,10 @@ if( !$gBitSystem->isDatabaseValid() ) {
 			}
 		}
 	}
-	$smarty->assign_by_ref( 'gCenterPieces', $gCenterPieces );
+	$gBitSmarty->assign_by_ref( 'gCenterPieces', $gCenterPieces );
 
 	// Display the template
 	$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl');
-	//$smarty->display("bitweaver.tpl");
+	//$gBitSmarty->display("bitweaver.tpl");
 }
 ?>
