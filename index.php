@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.7 2005/08/11 14:19:51 lsces Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.8 2005/08/24 22:02:41 squareing Exp $
 
 * @package bitweaver
 */
@@ -33,6 +33,7 @@ if (!defined('ACTIVE_PACKAGE')) {
 
 if( !empty( $_REQUEST['content_id'] ) ) {
 	$obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] );
+	$obj->load();
 	$url = $obj->getDisplayUrl();
 	header( "Location: $url" );
 	die;
