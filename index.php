@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.2.2.3 2005/08/25 06:53:09 lsces Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.2.2.4 2005/09/02 18:12:45 spiderr Exp $
 
 * @package bitweaver
 */
@@ -32,10 +32,11 @@ if (!defined('ACTIVE_PACKAGE')) {
 }
 
 if( !empty( $_REQUEST['content_id'] ) ) {
-	$obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] );
-	$url = $obj->getDisplayUrl();
-	header( "Location: $url" );
-	die;
+	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] ) ) {
+		$url = $obj->getDisplayUrl();
+		header( "Location: $url" );
+		die;
+	}
 } elseif ( !empty( $_REQUEST['structure_id'] ) ) {
 	include( LIBERTY_PKG_PATH.'display_structure_inc.php' );
 	die;
