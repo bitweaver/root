@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.10 2005/09/03 10:22:52 squareing Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.11 2005/11/22 07:29:40 squareing Exp $
 
 * @package bitweaver
 */
@@ -11,15 +11,15 @@
 
 // this has to be checked first thing since safe_mode screws up everything
 // to run bitweaver with safe_mode on, you should remove the following lines
-if( ini_get( 'safe_mode' ) ) {
-	echo '
-		<h1>Safe Mode check</h1>
-		We have detected that your server has <b>safe_mode</b> set to <b>on</b>.<br />
-		If you have access to the php.ini file or your service provider is willing, we recommend that you change this setting to <b>off</b><br />
-		To get bitweaver working with safe_mode active please click <a href="peartest.php">here</a>.<br />
-	';
-	die;
-}
+//if( ini_get( 'safe_mode' ) ) {
+//	echo '
+//		<h1>Safe Mode check</h1>
+//		We have detected that your server has <b>safe_mode</b> set to <b>on</b>.<br />
+//		If you have access to the php.ini file or your service provider is willing, we recommend that you change this setting to <b>off</b><br />
+//		To get bitweaver working with safe_mode active please click <a href="peartest.php">here</a>.<br />
+//	';
+//	die;
+//}
 require_once ('bit_setup_inc.php');
 
 //vd( $_COOKIE );
