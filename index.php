@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.11 2005/11/22 07:29:40 squareing Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.12 2006/01/29 17:51:27 squareing Exp $
 
 * @package bitweaver
 */
@@ -34,7 +34,7 @@ if (!defined('ACTIVE_PACKAGE')) {
 if( !empty( $_REQUEST['content_id'] ) ) {
 	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] ) ) {
 		$url = $obj->getDisplayUrl();
-		header( "Location: $url" );
+		header( "Location: ".$url.( !empty( $_REQUEST['highlight'] ) ? '&highlight='.$_REQUEST['highlight'] : '' ) );
 		die;
 	}
 } elseif ( !empty( $_REQUEST['structure_id'] ) ) {
