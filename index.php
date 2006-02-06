@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.12 2006/01/29 17:51:27 squareing Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.13 2006/02/06 00:07:07 squareing Exp $
 
 * @package bitweaver
 */
@@ -44,7 +44,7 @@ if( !empty( $_REQUEST['content_id'] ) ) {
 $gBitSystem->loadLayout();
 if( !$gBitSystem->isDatabaseValid() ) {
 	installError();
-} elseif( isset($bitIndex) || empty( $gBitSystem->mLayout[CENTER_COLUMN] ) ) {
+} elseif( isset($bit_index) || empty( $gBitSystem->mLayout[CENTER_COLUMN] ) ) {
 	header ("location: ".$gBitSystem->getDefaultPage());
 } else {
 
