@@ -1,13 +1,8 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.15 2006/12/30 18:36:52 squareing Exp $
-
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.16 2007/04/02 18:54:59 squareing Exp $
 * @package bitweaver
 */
-
-// Copyright (c) 2002-2003, Luis Argerich, Garland Foster, Eduardo Polidor, et. al.
-// All Rights Reserved. See copyright.txt for details and a complete list of authors.
-// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
 // this has to be checked first thing since safe_mode screws up everything
 // to run bitweaver with safe_mode on, you should remove the following lines
@@ -20,14 +15,10 @@
 //	';
 //	die;
 //}
-require_once ('bit_setup_inc.php');
-
-//vd( $_COOKIE );
-//vd( $_SESSION );
-global $gBitSystem, $gBitSmarty;
+require_once( 'bit_setup_inc.php' );
 
 // $gBitSystem->loadLayout() needs ACTIVE_PACKAGE
-if (!defined('ACTIVE_PACKAGE')) {
+if( !defined( 'ACTIVE_PACKAGE' ) || !$gBitSystem->isDatabaseValid() ) {
 	installError();
 }
 
@@ -37,30 +28,22 @@ if( !empty( $_REQUEST['content_id'] ) ) {
 		header( "Location: ".$url.( !empty( $_REQUEST['highlight'] ) ? '&highlight='.$_REQUEST['highlight'] : '' ) );
 		die;
 	}
-} elseif ( !empty( $_REQUEST['structure_id'] ) ) {
+} elseif( !empty( $_REQUEST['structure_id'] ) ) {
 	include( LIBERTY_PKG_PATH.'display_structure_inc.php' );
 	die;
 }
-$gBitSystem->loadLayout();
-if( !$gBitSystem->isDatabaseValid() ) {
-	installError();
-} elseif( isset($bit_index) || empty( $gBitSystem->mLayout[CENTER_COLUMN] ) ) {
-	header ("location: ".$gBitSystem->getDefaultPage());
-} else {
 
+$gBitThemes->loadLayout();
+if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
+	header( "location: ".$gBitSystem->getDefaultPage() );
+} else {
 	global $gCenterPieces;
 	$gCenterPieces = array();
-	foreach( array_keys( $gBitSystem->mLayout ) as $key ) {
-		if( $key == CENTER_COLUMN ) {
-			for( $i = 0; $i < count( $gBitSystem->mLayout[$key] ); $i++ ) {
-				array_push( $gCenterPieces, 'bitpackage:'.$gBitSystem->mLayout[$key][$i]['module_rsrc'] );
-			}
-		}
+	if( !empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
+		$gCenterPieces = $gBitThemes->mLayout[CENTER_COLUMN];
 	}
-	$gBitSmarty->assign_by_ref( 'gCenterPieces', $gCenterPieces );
 
 	// Display the template
 	$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl');
-	//$gBitSmarty->display("bitweaver.tpl");
 }
 ?>
