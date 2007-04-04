@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.16 2007/04/02 18:54:59 squareing Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.17 2007/04/04 14:31:30 squareing Exp $
 * @package bitweaver
 */
 
@@ -19,7 +19,7 @@ require_once( 'bit_setup_inc.php' );
 
 // $gBitSystem->loadLayout() needs ACTIVE_PACKAGE
 if( !defined( 'ACTIVE_PACKAGE' ) || !$gBitSystem->isDatabaseValid() ) {
-	installError();
+	install_error();
 }
 
 if( !empty( $_REQUEST['content_id'] ) ) {
