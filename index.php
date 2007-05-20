@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.17 2007/04/04 14:31:30 squareing Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.18 2007/05/20 21:57:03 nickpalmer Exp $
 * @package bitweaver
 */
 
@@ -35,7 +35,18 @@ if( !empty( $_REQUEST['content_id'] ) ) {
 
 $gBitThemes->loadLayout();
 if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
-	header( "location: ".$gBitSystem->getDefaultPage() );
+
+    // Redirectless home for packages
+    $bit_index = $gBitSystem->getConfig('bit_index');
+    if (in_array( $bit_index, array_keys( $gBitSystem->mPackages ) ) ) {
+	$pkgPth = strtoupper( $bit_index ).'_PKG_PATH';
+	if (defined($pkgPth)) {
+	    include_once( constant($pkgPth).'/index.php' );
+	    die;
+	}
+    }
+
+    header( "location: ".$gBitSystem->getDefaultPage() );
 } else {
 	global $gCenterPieces;
 	$gCenterPieces = array();
