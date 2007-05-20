@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.18 2007/05/20 21:57:03 nickpalmer Exp $
+* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.19 2007/05/20 22:00:55 nickpalmer Exp $
 * @package bitweaver
 */
 
@@ -41,7 +41,8 @@ if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
     if (in_array( $bit_index, array_keys( $gBitSystem->mPackages ) ) ) {
 	$pkgPth = strtoupper( $bit_index ).'_PKG_PATH';
 	if (defined($pkgPth)) {
-	    include_once( constant($pkgPth).'/index.php' );
+	    chdir(constant($pkgPth));
+	    include_once( './index.php' );
 	    die;
 	}
     }
