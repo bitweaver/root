@@ -1,8 +1,8 @@
 <?php
 /**
-* @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.19 2007/05/20 22:00:55 nickpalmer Exp $
-* @package bitweaver
-*/
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.20 2007/05/21 03:19:07 squareing Exp $
+ * @package bitweaver
+ */
 
 // this has to be checked first thing since safe_mode screws up everything
 // to run bitweaver with safe_mode on, you should remove the following lines
@@ -18,36 +18,36 @@
 require_once( 'bit_setup_inc.php' );
 
 // $gBitSystem->loadLayout() needs ACTIVE_PACKAGE
-if( !defined( 'ACTIVE_PACKAGE' ) || !$gBitSystem->isDatabaseValid() ) {
+if( !$gBitSystem->isDatabaseValid() ) {
 	install_error();
+} elseif( !defined( 'ACTIVE_PACKAGE' )) {
+	$bit_index = $gBitSystem->getConfig( 'bit_index' );
+	if( in_array( $bit_index, array_keys( $gBitSystem->mPackages )) && defined( strtoupper( $bit_index ).'_PKG_PATH' )) {
+		define( 'ACTIVE_PACKAGE', constant( strtoupper( $bit_index ).'_PKG_NAME' ));
+	} else {
+		unset( $bit_index );
+	}
 }
 
-if( !empty( $_REQUEST['content_id'] ) ) {
-	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] ) ) {
-		$url = $obj->getDisplayUrl();
-		header( "Location: ".$url.( !empty( $_REQUEST['highlight'] ) ? '&highlight='.$_REQUEST['highlight'] : '' ) );
-		die;
+if( !empty( $_REQUEST['content_id'] )) {
+	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] )) {
+		bit_redirect( $obj->getDisplayUrl().( !empty( $_REQUEST['highlight'] ) ? '&highlight='.$_REQUEST['highlight'] : '' ));
 	}
-} elseif( !empty( $_REQUEST['structure_id'] ) ) {
+} elseif( !empty( $_REQUEST['structure_id'] )) {
 	include( LIBERTY_PKG_PATH.'display_structure_inc.php' );
 	die;
 }
 
 $gBitThemes->loadLayout();
 if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
-
-    // Redirectless home for packages
-    $bit_index = $gBitSystem->getConfig('bit_index');
-    if (in_array( $bit_index, array_keys( $gBitSystem->mPackages ) ) ) {
-	$pkgPth = strtoupper( $bit_index ).'_PKG_PATH';
-	if (defined($pkgPth)) {
-	    chdir(constant($pkgPth));
-	    include_once( './index.php' );
-	    die;
+	// Redirectless home for packages
+	if( !empty( $bit_index )) {
+		chdir( BIT_ROOT_PATH.$bit_index );
+		include_once( './index.php' );
+die;
 	}
-    }
 
-    header( "location: ".$gBitSystem->getDefaultPage() );
+	bit_redirect( $gBitSystem->getDefaultPage() );
 } else {
 	global $gCenterPieces;
 	$gCenterPieces = array();
@@ -56,6 +56,6 @@ if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
 	}
 
 	// Display the template
-	$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl');
+	$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl' );
 }
 ?>
