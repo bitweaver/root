@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.20 2007/05/21 03:19:07 squareing Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.21 2007/05/23 20:02:30 bitweaver Exp $
  * @package bitweaver
  */
 
@@ -39,23 +39,12 @@ if( !empty( $_REQUEST['content_id'] )) {
 }
 
 $gBitThemes->loadLayout();
-if( empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
-	// Redirectless home for packages
-	if( !empty( $bit_index )) {
-		chdir( BIT_ROOT_PATH.$bit_index );
-		include_once( './index.php' );
+// Redirectless home for packages
+if( !empty( $bit_index )) {
+	chdir( BIT_ROOT_PATH.$bit_index );
+	include_once( './index.php' );
 die;
-	}
-
-	bit_redirect( $gBitSystem->getDefaultPage() );
-} else {
-	global $gCenterPieces;
-	$gCenterPieces = array();
-	if( !empty( $gBitThemes->mLayout[CENTER_COLUMN] )) {
-		$gCenterPieces = $gBitThemes->mLayout[CENTER_COLUMN];
-	}
-
-	// Display the template
-	$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl' );
 }
+
+bit_redirect( $gBitSystem->getDefaultPage() );
 ?>
