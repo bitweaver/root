@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.21 2007/05/23 20:02:30 bitweaver Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.22 2007/05/30 21:07:27 spiderr Exp $
  * @package bitweaver
  */
 
@@ -25,6 +25,7 @@ if( !$gBitSystem->isDatabaseValid() ) {
 	if( in_array( $bit_index, array_keys( $gBitSystem->mPackages )) && defined( strtoupper( $bit_index ).'_PKG_PATH' )) {
 		define( 'ACTIVE_PACKAGE', constant( strtoupper( $bit_index ).'_PKG_NAME' ));
 	} else {
+		define( 'ACTIVE_PACKAGE', KERNEL_PKG_NAME );
 		unset( $bit_index );
 	}
 }
