@@ -4,21 +4,18 @@ Welcome to bitweaver! A Powerful, flexible, simple, and fast web framework and
 content management system
 
 DOCUMENTATION
-
 * It is highly recommended you refer to the online documentation at
-* http://www.bitweaver.org
+  http://www.bitweaver.org
 
 INSTALLATION
-
-* Requirements: please visit
+* For a detailed list of requirements please visit
   http://www.bitweaver.org/wiki/bitweaverRequirements
-* point your browser to the install/install.php file. 
+* Point your browser to the install/install.php file.
 * There are no shell scripts or other evil things.
 
 COPYRIGHT
-
-* Copyright (c) 2005 bitweaver.org Rights Reserved. See copyright.txt for
-* details and a complete list of authors.  Licensed under the GNU LESSER
-* GENERAL PUBLIC LICENSE. See license.txt for details.
+* Copyright (c) 2007 bitweaver.org Rights Reserved.
+* Licensed under the GNU Lesser General Public License.
+  http://www.gnu.org/licenses/lgpl.html
 
 ... Thanks for trying bitweaver!
