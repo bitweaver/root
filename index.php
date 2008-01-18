@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.22 2007/05/30 21:07:27 spiderr Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.23 2008/01/18 23:24:40 nickpalmer Exp $
  * @package bitweaver
  */
 
@@ -32,7 +32,17 @@ if( !$gBitSystem->isDatabaseValid() ) {
 
 if( !empty( $_REQUEST['content_id'] )) {
 	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] )) {
-		bit_redirect( $obj->getDisplayUrl().( !empty( $_REQUEST['highlight'] ) ? '&highlight='.$_REQUEST['highlight'] : '' ));
+		$url = $obj->getDisplayUrl();
+		if (!empty($_REQUEST['highlight'])) {
+			if (preg_match('/\?/', $url)) {
+				$url .= '&';
+			}
+			else {
+				$url .= '?';
+			}
+			$url .= 'highlight='.$_REQUEST['highlight'];
+		}
+		bit_redirect( $url );
 	}
 } elseif( !empty( $_REQUEST['structure_id'] )) {
 	include( LIBERTY_PKG_PATH.'display_structure_inc.php' );
