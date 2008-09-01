@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.23 2008/01/18 23:24:40 nickpalmer Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.24 2008/09/01 05:57:22 squareing Exp $
  * @package bitweaver
  */
 
@@ -33,11 +33,10 @@ if( !$gBitSystem->isDatabaseValid() ) {
 if( !empty( $_REQUEST['content_id'] )) {
 	if( $obj = LibertyBase::getLibertyObject( $_REQUEST['content_id'] )) {
 		$url = $obj->getDisplayUrl();
-		if (!empty($_REQUEST['highlight'])) {
-			if (preg_match('/\?/', $url)) {
+		if( !empty($_REQUEST['highlight'] )) {
+			if( preg_match( '/\?/', $url )) {
 				$url .= '&';
-			}
-			else {
+			} else {
 				$url .= '?';
 			}
 			$url .= 'highlight='.$_REQUEST['highlight'];
