@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.25 2008/09/19 17:08:59 squareing Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.26 2008/11/30 00:51:01 tekimaki_admin Exp $
  * @package bitweaver
  */
 require_once( 'bit_setup_inc.php' );
@@ -12,6 +12,7 @@ if( !$gBitSystem->isDatabaseValid() ) {
 	$bit_index = $gBitSystem->getConfig( 'bit_index' );
 	if( in_array( $bit_index, array_keys( $gBitSystem->mPackages )) && defined( strtoupper( $bit_index ).'_PKG_PATH' )) {
 		define( 'ACTIVE_PACKAGE', constant( strtoupper( $bit_index ).'_PKG_NAME' ));
+		$gBitSystem->mActivePackage = $bit_index;
 	} else {
 		define( 'ACTIVE_PACKAGE', KERNEL_PKG_NAME );
 		unset( $bit_index );
@@ -39,7 +40,7 @@ if( !empty( $_REQUEST['content_id'] )) {
 $gBitThemes->loadLayout();
 // Redirectless home for packages
 if( !empty( $bit_index )) {
-	chdir( BIT_ROOT_PATH.$bit_index );
+	chdir( $gBitSystem->mPackages[$bit_index]['path'] );
 	include_once( './index.php' );
 die;
 }
