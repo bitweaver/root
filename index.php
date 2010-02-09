@@ -1,9 +1,9 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.26 2008/11/30 00:51:01 tekimaki_admin Exp $
+ * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.27 2010/02/09 14:29:56 dansut Exp $
  * @package bitweaver
  */
-require_once( 'bit_setup_inc.php' );
+require_once( 'kernel/setup_inc.php' );
 
 // $gBitSystem->loadLayout() needs ACTIVE_PACKAGE
 if( !$gBitSystem->isDatabaseValid() ) {
