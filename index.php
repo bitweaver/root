@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_root/index.php,v 1.27 2010/02/09 14:29:56 dansut Exp $
+ * @version $Header$
  * @package bitweaver
  */
 require_once( 'kernel/setup_inc.php' );
